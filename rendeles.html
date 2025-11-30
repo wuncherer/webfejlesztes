@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maer Patrik">
+    <title>Rendelés - Pizza Manufaktúra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Pizza Logo">
+                    <h1>Pizza Manufaktúra</h1>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Kezdőlap</a></li>
+                    <li><a href="rendeles.html" class="active">Rendelés</a></li>
+                    <li><a href="galeria.html">Galéria</a></li>
+                    <li><a href="kapcsolat.html">Kapcsolat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Állítsd össze a pizzádat!</h2>
+        <p>Használd az interaktív kalkulátort az ár kiszámításához, majd küldd el a rendelést.</p>
+
+        <form id="pizzaForm" novalidate onsubmit="return validateForm(event)"> 
+            
+            <div class="calculator-box">
+                <h3>🍕 Pizza Kalkulátor</h3>
+                
+                <div class="form-group">
+                    <label>Válassz méretet:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="size" value="1800" onchange="calculatePrice()" checked> Kicsi (32cm) - 1800 Ft</label>
+                        <label><input type="radio" name="size" value="2400" onchange="calculatePrice()"> Közepes (45cm) - 2400 Ft</label>
+                        <label><input type="radio" name="size" value="3500" onchange="calculatePrice()"> Családi (60cm) - 3500 Ft</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="base">Alap szósz:</label>
+                    <select id="base" name="base" onchange="calculatePrice()">
+                        <option value="0">Paradicsomos (Ingyenes)</option>
+                        <option value="200">Tejfölös (+200 Ft)</option>
+                        <option value="350">BBQ (+350 Ft)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Válassz feltéteket (legalább 1-et):</label>
+                    <div class="checkbox-group grid-layout">
+                        <label><input type="checkbox" name="topping" value="400" onchange="calculatePrice()"> Sonka (+400 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="400" onchange="calculatePrice()"> Szalámi (+400 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="400" onchange="calculatePrice()"> Bacon (+400 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="450" onchange="calculatePrice()"> Csirkemell (+450 Ft)</label>
+                        
+                        <label><input type="checkbox" name="topping" value="350" onchange="calculatePrice()"> Extra Mozzarella (+350 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="400" onchange="calculatePrice()"> Gorgonzola (+400 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="350" onchange="calculatePrice()"> Füstölt sajt (+350 Ft)</label>
+                        
+                        <label><input type="checkbox" name="topping" value="250" onchange="calculatePrice()"> Gomba (+250 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="250" onchange="calculatePrice()"> Kukorica (+250 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="250" onchange="calculatePrice()"> Lila hagyma (+250 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="250" onchange="calculatePrice()"> Kaliforniai paprika (+250 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="300" onchange="calculatePrice()"> Olívabogyó (+300 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="300" onchange="calculatePrice()"> Jalapeño (Csípős) (+300 Ft)</label>
+                        <label><input type="checkbox" name="topping" value="250" onchange="calculatePrice()"> Ananász (+250 Ft)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="spiciness">Csípősség mértéke (1-10):</label>
+                    <input type="range" id="spiciness" name="spiciness" min="1" max="10" value="1" oninput="updateSpicinessDisplay(this.value)">
+                    <span id="spicinessValue">Enyhe (1)</span>
+                </div>
+
+                <div class="total-price">
+                    Fizetendő összeg: <span id="finalPrice">1800</span> Ft
+                </div>
+            </div>
+
+            <h3>Szállítási adatok</h3>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="name">Teljes név:</label>
+                    <input type="text" id="name" name="name" placeholder="pl. Kovács János">
+                    <small class="error-msg" id="nameError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail cím:</label>
+                    <input type="email" id="email" name="email" placeholder="pelda@gmail.com">
+                    <small class="error-msg" id="emailError"></small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefonszám:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="06301234567">
+                    <small class="error-msg" id="phoneError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Szállítási cím:</label>
+                    <input type="text" id="address" name="address" placeholder="Utca, házszám...">
+                    <small class="error-msg" id="addressError"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Megjegyzés a futárnak:</label>
+                    <textarea id="comment" name="comment" rows="3" placeholder="Pl. a kapucsengő rossz..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Mikorra kéred a szállítást?</label>
+    
+                    <div class="checkbox-group">
+                        <label>
+                        <input type="checkbox" id="immediateDelivery" onchange="toggleTimeSelector()"> 
+                        Most azonnal kérem (kb. 45 perc)
+                        </label>
+                    </div>
+
+                    <div id="customTimeSelector" class="time-selector-box">
+                        <label>Válassz időpontot:</label>
+                        <div class="time-dropdowns">
+                            <select id="hour">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11" selected>11</option> <option value="12">12</option>
+                            </select>
+                            <span class="colon">:</span>
+                            <select id="minute">
+                                <option value="00" selected>00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <select id="ampm">
+                                <option value="AM" selected>AM (Délelőtt)</option>
+                                <option value="PM">PM (Délután)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Rendelés elküldése</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pizza Manufaktúra</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

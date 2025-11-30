@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Maer Patrik">
+    <meta name="description" content="A város legjobb kézműves pizzái, friss alapanyagokból.">
+    <title>Pizza Manufaktúra - Kezdőlap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Pizza Logo">
+                    <h1>Pizza Manufaktúra</h1>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Kezdőlap</a></li>
+                    <li><a href="rendeles.html">Rendelés</a></li>
+                    <li><a href="galeria.html">Galéria</a></li>
+                    <li><a href="kapcsolat.html">Kapcsolat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Az igazi olasz ízek</h2>
+                <p>Kézzel nyújtott tészta, fatüzelésű kemence.</p>
+                <a href="rendeles.html" class="btn">Rendelés leadása</a>
+            </div>
+        </section>
+
+        <section class="container intro">
+            <h3>Üdvözlünk a Manufaktúrában!</h3>
+            <p>Családi vállalkozásunk 1998 óta készíti a város legropogósabb pizzáit. Minden alapanyagunkat közvetlenül Olaszországból szerezzük be, hogy garantáljuk a hiteles olasz élményt.</p>
+        </section>
+
+        <section class="counters">
+            <div class="container counter-grid">
+                <div class="counter-box">
+                    <div class="counter-number" data-target="15000">0</div>
+                    <p>Megsütött pizza</p>
+                </div>
+                <div class="counter-box">
+                    <div class="counter-number" data-target="25">0</div>
+                    <p>Év tapasztalat</p>
+                </div>
+                <div class="counter-box">
+                    <div class="counter-number" data-target="100">0</div>
+                    <p>% Elégedettség</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews container">
+            <h3>Rólunk mondták</h3>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Életem legjobb pizzája! A tészta vékony, a feltét bőséges. Csak ajánlani tudom."</p>
+                    <h4>- Végh Béla</h4>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Gyors kiszállítás és még forró volt, amikor megérkezett. A szósz isteni!"</p>
+                    <h4>- Nagy Anna</h4>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Igazi olasz hangulat a belváros szívében. A személyzet nagyon kedves."</p>
+                    <h4>- Tóth Gábor</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="container">
+                <h3>Iratkozz fel hírlevelünkre!</h3>
+                <form onsubmit="subscribeNewsletter(event)" class="newsletter-form">
+                    <input type="email" placeholder="Az email címed..." required>
+                    <button type="submit" class="btn">Feliratkozom</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pizza Manufaktúra - Minden jog fenntartva.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
